@@ -1,0 +1,22 @@
+{
+    "name": "marqu3s/nrsgateway",
+    "description": "NRS Gateway services integration.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joao Marques",
+            "email": "joao@jjmf.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "marqu3s\\nrsgateway\\": "src/"
+        }
+    }
+}
