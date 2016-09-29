@@ -32,7 +32,7 @@ class SendingTest extends TestCase
     private $password = '';
 
     /**
-     * @var string $realPhoneNumber A real phone number to test the receiving of a text message.
+     * @var string $realPhoneNumber A real phone number to test the receiving of a text message. Format: CCDDNNNNNNNNN
      */
     private $realPhoneNumber = '';
 

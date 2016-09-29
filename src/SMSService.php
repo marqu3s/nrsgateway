@@ -126,7 +126,7 @@ class SMSService extends NRSGateway
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_HEADER, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ["Accept: application/json", $this->base64AuthHeader]);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type:application/json", $this->base64AuthHeader]);
 
         $response = curl_exec ($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
