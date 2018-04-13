@@ -17,7 +17,7 @@ namespace marqu3s\nrsgateway;
  */
 class SMSService extends NRSGateway
 {
-    const ENDPOINT = 'https://gateway.plusmms.net/rest/message';
+    const ENDPOINT = 'https://dashboard.360nrs.com/api/rest/sms';
     const CHAR_LIMIT_GSM = 160;
     const CHAR_LIMIT_UTF16 = 70;
     const TO_LIMIT_PER_REQUEST = 500;
@@ -108,7 +108,7 @@ class SMSService extends NRSGateway
         foreach ($arrChunk as $i => $to) {
             $data = [
                 'to' => $to,
-                'text' => $this->msg,
+                'message' => $this->msg,
                 'from' => $this->from,
             ];
             $arrChunk[$i]['result'] = $this->doSend($data);
@@ -126,9 +126,11 @@ class SMSService extends NRSGateway
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_HEADER, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type:application/json", $this->base64AuthHeader]);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            "Content-Type:application/json", $this->base64AuthHeader
+        ]);
 
-        $response = curl_exec ($ch);
+        $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
         $header = substr($response, 0, $headerSize);
