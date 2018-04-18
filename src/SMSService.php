@@ -43,6 +43,9 @@ class SMSService extends NRSGateway
     /** @var bool OPTIONAL - If true the server will replace accented chars automatically. */
     public $trsec = true;
 
+    /** @var string Campain name. */
+    public $campaignName;
+
 
     /**
      * Splits the the $to list in chunks of self::TO_LIMIT_PER_REQUEST.
@@ -111,6 +114,11 @@ class SMSService extends NRSGateway
                 'message' => $this->msg,
                 'from' => $this->from,
             ];
+
+            if (!empty($this->campaignName)) {
+                $data['campaignName'] = $this->campaignName;
+            }
+
             $arrChunk[$i]['result'] = $this->doSend($data);
         }
 
