@@ -7,6 +7,9 @@
  */
 namespace marqu3s\nrsgateway;
 
+use yii\helpers\VarDumper;
+use Yii;
+
 /**
  * Class SMSService
  *
