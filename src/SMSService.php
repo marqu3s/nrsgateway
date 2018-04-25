@@ -146,10 +146,17 @@ class SMSService extends NRSGateway
 
         curl_close($ch);
 
-        return [
+        $result = [
             'httpCode' => $httpCode,
             'header' => $header,
             'body' => $body
         ];
+
+        if (YII_DEBUG) {
+            Yii::info('SMS SENT TO: ' . VarDumper::dumpAsString($data['to']), __METHOD__);
+            Yii::info('API RESPONSE: ' . VarDumper::dumpAsString($result), __METHOD__);
+        }
+
+        return $result;
     }
 }
