@@ -34,8 +34,8 @@ class SMSService extends NRSGateway
     /** @var string $from The sender. Max of 15 digits or 11 characters. */
     public $from = '';
 
-    /** @var string OPTIONAL - The coding. Allowed values are: 'gsm' or 'utf-16' */
-    public $coding = 'gsm';
+    /** @var string OPTIONAL - The coding. Allowed values are: 'gsm', 'gsm-pt' or 'utf-16' */
+    public $encoding = 'gsm';
 
     /** @var string OPTIONAL - The date to send the message. Format: 'YYYYmmddHHiiss' */
     public $fSend = '';
@@ -113,9 +113,11 @@ class SMSService extends NRSGateway
         $arrChunk = array_chunk($this->to, self::TO_LIMIT_PER_REQUEST);
         foreach ($arrChunk as $i => $to) {
             $data = [
+                'encoding' => $this->encoding,
                 'to' => $to,
                 'message' => $this->msg,
                 'from' => $this->from,
+                'parts' => $this->parts
             ];
 
             if (!empty($this->campaignName)) {
